@@ -1,0 +1,73 @@
+FAKE SELLERS LIST (for seeding/demo)
+
+1) Maria Petrova — Age: 16 — Skills: Graphic Design, Layout, Visual Balance
+   Portfolio: Instagram posts, posters, banners
+   Focus: Clean, modern visuals for digital use
+
+2) Stefan Nikolov — Age: 18 — Skills: Logo Design, Brand Identity, Color Theory
+   Portfolio: Logo concepts, brand boards
+   Focus: Creating visual identity for new brands
+
+3) Yoana Ivanova — Age: 17 — Skills: Illustration, Digital Drawing
+   Portfolio: Digital illustrations, character sketches
+   Focus: Creative visuals and custom artwork
+
+4) Ivan Dimitrov — Age: 17 — Skills: Post Design, Captions, Visual Storytelling
+   Portfolio: Instagram post mockups
+   Focus: Engaging, youth-oriented content
+
+5) Kalina Petrova — Age: 16 — Skills: Video Editing, Trends, Timing
+   Portfolio: TikTok edits, Instagram reels
+   Focus: Fast, trendy short videos
+
+6) Georgi Marinov — Age: 18 — Skills: Copywriting, Storytelling
+   Portfolio: Captions, short blog texts
+   Focus: Clear, catchy messaging
+
+7) Elena Georgieva — Age: 18 — Skills: Video Editing, Transitions, Sound
+   Portfolio: Edited short videos
+   Focus: Polished edits for social media
+
+8) Petar Angelov — Age: 17 — Skills: Filming, Framing, Lighting
+   Portfolio: Raw footage, school events
+   Focus: Capturing video content
+
+9) Daniela Kostova — Age: 16 — Skills: Photo Editing, Color Correction
+   Portfolio: Edited portraits, product photos
+   Focus: Clean and natural photo edits
+
+10) Daniel Stoyanov — Age: 17 — Skills: UI Design, Layout, UX Basics
+    Portfolio: Website mockups (Figma)
+    Focus: User-friendly web design
+
+11) Martin Hristov — Age: 18 — Skills: HTML, CSS, Basic JavaScript
+    Portfolio: Simple websites
+    Focus: Turning designs into working pages
+
+12) Simona Vasileva — Age: 16 — Skills: No-Code Development
+    Portfolio: Webflow / Wix sites
+    Focus: Fast website creation without coding
+
+13) Nikolay Todorov — Age: 18 — Skills: Campaign Ideas, Analytics Basics
+    Portfolio: Marketing plans
+    Focus: Promoting brands online
+
+14) Hristo Velikov — Age: 17 — Skills: Research, Surveys, Data Summary
+    Portfolio: Research reports
+    Focus: Understanding customers & markets
+
+15) Alexandra Dimitrova — Age: 16 — Skills: Presentations, Visual Storytelling
+    Portfolio: Pitch decks, slide designs
+    Focus: Clear and persuasive presentations
+
+16) Raya Koleva — Age: 16 — Skills: Community Work, Communication
+    Portfolio: NGO project summaries
+    Focus: Social impact initiatives
+
+17) Borislav Petrov — Age: 18 — Skills: Planning, Coordination
+    Portfolio: Event schedules
+    Focus: Supporting and organizing events
+
+18) Mila Hristova — Age: 17 — Skills: Campaign Planning, Content Creation
+    Portfolio: Awareness posters, plans
+    Focus: Environmental & social awareness
