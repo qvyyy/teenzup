@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TeenzUP — Sign Up</title>
+  <meta name="description" content="Create your TeenzUP account and start selling your skills." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="glow-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+  <div class="stars">
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+  </div>
+
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="signup.html" class="active btn" style="margin-left: 12px;">Sign Up</a></li>
+      <li><a href="login.html" class="btn">Login</a></li>
+    </ul>
+    <div class="logo">TeenzUP</div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="page-content">
+        <section class="section-with-lines animate-on-scroll" style="position:relative;">
+          <div class="floating-lines">
+            <span class="line"></span><span class="line"></span><span class="line"></span>
+          </div>
+          <h1>Create Your Account</h1>
+          <span class="heading-line"></span>
+          <p>Join TeenzUP and start selling your skills to businesses.</p>
+
+          <div class="form-container animate-on-scroll delay-2">
+            <form id="signupForm" onsubmit="handleSignup(event)">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="familyName">Family Name *</label>
+                <input type="text" id="familyName" name="familyName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="nickname">Nickname *</label>
+                <input type="text" id="nickname" name="nickname" required placeholder="This will be your username">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" required minlength="6">
+              </div>
+
+              <div class="form-group">
+                <label for="portfolio">Portfolio Link *</label>
+                <input type="url" id="portfolio" name="portfolio" required placeholder="https://yourportfolio.com">
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" required placeholder="Tell us about yourself, your skills, and what you can offer..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="selling">What are you selling? *</label>
+                <select id="selling" name="selling" required>
+                  <option value="">Select a category</option>
+                  <option value="Graphic Design">Graphic Design</option>
+                  <option value="Branding & Logo Design">Branding & Logo Design</option>
+                  <option value="Illustration & Visual Art">Illustration & Visual Art</option>
+                  <option value="Social Media Posts">Social Media Posts</option>
+                  <option value="Short-Form Video">Short-Form Video (Reels / TikTok)</option>
+                  <option value="Content Writing & Captions">Content Writing & Captions</option>
+                  <option value="Video Editing">Video Editing</option>
+                  <option value="Basic Filming & Shooting">Basic Filming & Shooting</option>
+                  <option value="Photo Editing">Photo Editing</option>
+                  <option value="Web Design (UI/UX)">Web Design (UI/UX basics)</option>
+                  <option value="Basic Web Development">Basic Web Development</option>
+                  <option value="No-Code Tools">No-Code Tools (Webflow, Wix, etc.)</option>
+                  <option value="Digital Marketing">Digital Marketing</option>
+                  <option value="Market Research">Market Research</option>
+                  <option value="Presentation & Pitch Decks">Presentation & Pitch Decks</option>
+                  <option value="Social Projects & NGOs">Social Projects & NGOs</option>
+                  <option value="Event Support & Organization">Event Support & Organization</option>
+                  <option value="Sustainability & Awareness Campaigns">Sustainability & Awareness Campaigns</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="age">Age *</label>
+                <input type="number" id="age" name="age" required min="16" max="19">
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn">Create Account</button>
+                <button type="reset" class="btn" style="background: rgba(255,255,255,.03);">Clear</button>
+              </div>
+            </form>
+
+            <div class="form-switch">
+              Already have an account? <a href="login.html">Login here</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="accounts.js"></script>
+  <script>
+    function handleSignup(event) {
+      event.preventDefault();
+      
+      const formData = {
+        firstName: document.getElementById('firstName').value.trim(),
+        familyName: document.getElementById('familyName').value.trim(),
+        nickname: document.getElementById('nickname').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value,
+        portfolio: document.getElementById('portfolio').value.trim(),
+        description: document.getElementById('description').value.trim(),
+        selling: document.getElementById('selling').value,
+        age: parseInt(document.getElementById('age').value)
+      };
+
+      // Validate age
+      if (formData.age < 16 || formData.age > 19) {
+        alert('You must be between 16 and 19 years old to join TeenzUP.');
+        return;
+      }
+
+      // Check if nickname already exists
+      if (accountManager.accountExists(formData.nickname)) {
+        alert('This nickname is already taken. Please choose another one.');
+        return;
+      }
+
+      // Check if email already exists
+      if (accountManager.emailExists(formData.email)) {
+        alert('An account with this email already exists. Please login instead.');
+        return;
+      }
+
+      // Create account
+      const success = accountManager.createAccount(formData);
+      
+      if (success) {
+        alert('Account created successfully! You can now login.');
+        window.location.href = 'login.html';
+      } else {
+        alert('Failed to create account. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>

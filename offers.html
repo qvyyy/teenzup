@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TeenzUP — Offers</title>
+  <meta name="description" content="Explore projects by category - find opportunities that match your interests." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="glow-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+  <div class="stars">
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+  </div>
+
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li class="nav-link-with-dropdown">
+        <a href="offers.html" class="active" onclick="event.preventDefault(); toggleCategoryDropdown();">
+          Offers
+          <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="nav-category-dropdown" id="categoryDropdown">
+          <button onclick="selectCategory('creative')">Creative & Design</button>
+          <button onclick="selectCategory('social')">Social Media & Content</button>
+          <button onclick="selectCategory('video')">Video & Photography</button>
+          <button onclick="selectCategory('tech')">Tech & Digital</button>
+          <button onclick="selectCategory('marketing')">Marketing & Business</button>
+          <button onclick="selectCategory('community')">Community & Impact</button>
+        </div>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="signup.html" class="btn" style="margin-left: 12px;">Sign Up</a></li>
+      <li><a href="login.html" class="btn">Login</a></li>
+    </ul>
+    <div class="logo">TeenzUP</div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="page-content">
+        <section class="section-with-lines" style="position:relative;">
+          <div class="floating-lines">
+            <span class="line"></span><span class="line"></span><span class="line"></span>
+          </div>
+          <h1>Explore Projects</h1>
+          <span class="heading-line"></span>
+          <p>Browse opportunities by category and find projects that match your interests.</p>
+
+          <div class="filter-panel" id="filterPanel" style="display: none;">
+            <h3 id="filterTitle">Filter by skill</h3>
+            <div class="filter-chips" id="filterChips"></div>
+          </div>
+
+          <div id="offersResults"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const categories = {
+      creative: {
+        name: 'Creative & Design',
+        subcategories: ['Graphic Design', 'Branding & Logo Design', 'Illustration & Visual Art'],
+        students: {
+          'Graphic Design': { name: 'Maria Petrova', age: 16, skills: 'Graphic Design, Layout, Visual Balance', portfolio: 'Instagram posts, posters, banners', focus: 'Clean, modern visuals for digital use' },
+          'Branding & Logo Design': { name: 'Stefan Nikolov', age: 18, skills: 'Logo Design, Brand Identity, Color Theory', portfolio: 'Logo concepts, brand boards', focus: 'Creating visual identity for new brands' },
+          'Illustration & Visual Art': { name: 'Yoana Ivanova', age: 17, skills: 'Illustration, Digital Drawing', portfolio: 'Digital illustrations, character sketches', focus: 'Creative visuals and custom artwork' }
+        }
+      },
+      social: {
+        name: 'Social Media & Content',
+        subcategories: ['Social Media Posts', 'Short-Form Video (Reels / TikTok)', 'Content Writing & Captions'],
+        students: {
+          'Social Media Posts': { name: 'Ivan Dimitrov', age: 17, skills: 'Post Design, Captions, Visual Storytelling', portfolio: 'Instagram post mockups', focus: 'Engaging, youth-oriented content' },
+          'Short-Form Video (Reels / TikTok)': { name: 'Kalina Petrova', age: 16, skills: 'Video Editing, Trends, Timing', portfolio: 'TikTok edits, Instagram reels', focus: 'Fast, trendy short videos' },
+          'Content Writing & Captions': { name: 'Georgi Marinov', age: 18, skills: 'Copywriting, Storytelling', portfolio: 'Captions, short blog texts', focus: 'Clear, catchy messaging' }
+        }
+      },
+      video: {
+        name: 'Video & Photography',
+        subcategories: ['Video Editing', 'Basic Filming & Shooting', 'Photo Editing'],
+        students: {
+          'Video Editing': { name: 'Elena Georgieva', age: 18, skills: 'Video Editing, Transitions, Sound', portfolio: 'Edited short videos', focus: 'Polished edits for social media' },
+          'Basic Filming & Shooting': { name: 'Petar Angelov', age: 17, skills: 'Filming, Framing, Lighting', portfolio: 'Raw footage, school events', focus: 'Capturing video content' },
+          'Photo Editing': { name: 'Daniela Kostova', age: 16, skills: 'Photo Editing, Color Correction', portfolio: 'Edited portraits, product photos', focus: 'Clean and natural photo edits' }
+        }
+      },
+      tech: {
+        name: 'Tech & Digital',
+        subcategories: ['Web Design (UI/UX basics)', 'Basic Web Development', 'No-Code Tools (Webflow, Wix, etc.)'],
+        students: {
+          'Web Design (UI/UX basics)': { name: 'Daniel Stoyanov', age: 17, skills: 'UI Design, Layout, UX Basics', portfolio: 'Website mockups (Figma)', focus: 'User-friendly web design' },
+          'Basic Web Development': { name: 'Martin Hristov', age: 18, skills: 'HTML, CSS, Basic JavaScript', portfolio: 'Simple websites', focus: 'Turning designs into working pages' },
+          'No-Code Tools (Webflow, Wix, etc.)': { name: 'Simona Vasileva', age: 16, skills: 'No-Code Development', portfolio: 'Webflow / Wix sites', focus: 'Fast website creation without coding' }
+        }
+      },
+      marketing: {
+        name: 'Marketing & Business',
+        subcategories: ['Digital Marketing', 'Market Research', 'Presentation & Pitch Decks'],
+        students: {
+          'Digital Marketing': { name: 'Nikolay Todorov', age: 18, skills: 'Campaign Ideas, Analytics Basics', portfolio: 'Marketing plans', focus: 'Promoting brands online' },
+          'Market Research': { name: 'Hristo Velikov', age: 17, skills: 'Research, Surveys, Data Summary', portfolio: 'Research reports', focus: 'Understanding customers & markets' },
+          'Presentation & Pitch Decks': { name: 'Alexandra Dimitrova', age: 16, skills: 'Presentations, Visual Storytelling', portfolio: 'Pitch decks, slide designs', focus: 'Clear and persuasive presentations' }
+        }
+      },
+      community: {
+        name: 'Community & Impact',
+        subcategories: ['Social Projects & NGOs', 'Event Support & Organization', 'Sustainability & Awareness Campaigns'],
+        students: {
+          'Social Projects & NGOs': { name: 'Raya Koleva', age: 16, skills: 'Community Work, Communication', portfolio: 'NGO project summaries', focus: 'Social impact initiatives' },
+          'Event Support & Organization': { name: 'Borislav Petrov', age: 18, skills: 'Planning, Coordination', portfolio: 'Event schedules', focus: 'Supporting and organizing events' },
+          'Sustainability & Awareness Campaigns': { name: 'Mila Hristova', age: 17, skills: 'Campaign Planning, Content Creation', portfolio: 'Awareness posters, plans', focus: 'Environmental & social awareness' }
+        }
+      }
+    };
+
+    let selectedCategory = null;
+    let selectedSubcategories = [];
+
+    function toggleCategoryDropdown() {
+      const wrap = document.querySelector('.nav-link-with-dropdown');
+      wrap.classList.toggle('open');
+    }
+
+    function selectCategory(categoryKey) {
+      selectedCategory = categoryKey;
+      selectedSubcategories = [];
+      const wrap = document.querySelector('.nav-link-with-dropdown');
+      wrap.classList.remove('open');
+      
+      const category = categories[categoryKey];
+      const filterPanel = document.getElementById('filterPanel');
+      const filterTitle = document.getElementById('filterTitle');
+      const filterChips = document.getElementById('filterChips');
+      const offersResults = document.getElementById('offersResults');
+      
+      filterTitle.textContent = `Filter by skill - ${category.name}`;
+      filterChips.innerHTML = '';
+      
+      category.subcategories.forEach(sub => {
+        const chip = document.createElement('button');
+        chip.className = 'filter-chip';
+        chip.textContent = sub;
+        chip.onclick = () => toggleSubcategory(sub, chip);
+        filterChips.appendChild(chip);
+      });
+      
+      filterPanel.style.display = 'block';
+      displayResults();
+    }
+
+    function toggleSubcategory(sub, chipEl) {
+      const index = selectedSubcategories.indexOf(sub);
+      if (index > -1) {
+        selectedSubcategories.splice(index, 1);
+        chipEl.classList.remove('active');
+      } else {
+        selectedSubcategories.push(sub);
+        chipEl.classList.add('active');
+      }
+      displayResults();
+    }
+
+    function displayResults() {
+      const offersResults = document.getElementById('offersResults');
+      
+      if (!selectedCategory) {
+        offersResults.innerHTML = '<div class="offers-empty"><p>No offers yet</p><p class="sub">Select a category above to explore available projects</p></div>';
+        return;
+      }
+
+      const category = categories[selectedCategory];
+      const displaySubs = selectedSubcategories.length > 0 ? selectedSubcategories : category.subcategories;
+      
+      if (displaySubs.length === 0) {
+        offersResults.innerHTML = '<div class="offers-empty"><p>No projects available yet</p><p class="sub">Select specific skills above to filter projects</p></div>';
+        return;
+      }
+
+      let html = '';
+      displaySubs.forEach(sub => {
+        const student = category.students[sub];
+        if (student) {
+          html += `
+            <div class="student-card animate-on-scroll">
+              <h3>${sub}</h3>
+              <div class="meta">Name: ${student.name} (${student.age})</div>
+              <div class="skills">
+                <span class="skill-tag">${student.skills.split(', ')[0]}</span>
+                <span class="skill-tag">${student.skills.split(', ')[1] || ''}</span>
+                <span class="skill-tag">${student.skills.split(', ')[2] || ''}</span>
+              </div>
+              <p><strong>Portfolio:</strong> ${student.portfolio}</p>
+              <p><strong>Focus:</strong> ${student.focus}</p>
+            </div>
+          `;
+        }
+      });
+
+      offersResults.innerHTML = html || '<div class="offers-empty"><p>No projects found</p><p class="sub">Try selecting different skills</p></div>';
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const wrap = document.querySelector('.nav-link-with-dropdown');
+      if (!wrap.contains(e.target)) {
+        wrap.classList.remove('open');
+      }
+    });
+
+    // Initial empty state
+    displayResults();
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TeenzUP — Login</title>
+  <meta name="description" content="Login to your TeenzUP account." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="glow-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+  <div class="stars">
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+  </div>
+
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="signup.html" class="btn" style="margin-left: 12px;">Sign Up</a></li>
+      <li><a href="login.html" class="active btn">Login</a></li>
+    </ul>
+    <div class="logo">TeenzUP</div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="page-content">
+        <section class="section-with-lines animate-on-scroll" style="position:relative;">
+          <div class="floating-lines">
+            <span class="line"></span><span class="line"></span><span class="line"></span>
+          </div>
+          <h1>Login to TeenzUP</h1>
+          <span class="heading-line"></span>
+          <p>Welcome back! Login with your nickname and password.</p>
+
+          <div class="form-container animate-on-scroll delay-2">
+            <form id="loginForm" onsubmit="handleLogin(event)">
+              <div class="form-group">
+                <label for="loginNickname">Nickname / Username *</label>
+                <input type="text" id="loginNickname" name="nickname" required placeholder="Enter your nickname">
+              </div>
+
+              <div class="form-group">
+                <label for="loginPassword">Password *</label>
+                <input type="password" id="loginPassword" name="password" required>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn">Login</button>
+              </div>
+            </form>
+
+            <div class="form-switch">
+              Don't have an account? <a href="signup.html">Sign up here</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="accounts.js"></script>
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const nickname = document.getElementById('loginNickname').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      const account = accountManager.login(nickname, password);
+      
+      if (account) {
+        // Store current user in session
+        sessionStorage.setItem('currentUser', JSON.stringify({
+          nickname: account.nickname,
+          firstName: account.firstName,
+          familyName: account.familyName,
+          email: account.email
+        }));
+        
+        alert(`Welcome back, ${account.firstName}! Login successful.`);
+        window.location.href = 'index.html';
+      } else {
+        alert('Invalid nickname or password. Please try again.');
+      }
+    }
+
+    // Check if already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+      const currentUser = sessionStorage.getItem('currentUser');
+      if (currentUser) {
+        const user = JSON.parse(currentUser);
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+          loginForm.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px;">
+              <h2 style="color: var(--accent); margin-bottom: 16px;">Already Logged In</h2>
+              <p>You are logged in as <strong>${user.nickname}</strong></p>
+              <div style="margin-top: 24px;">
+                <a href="index.html" class="btn">Go to Home</a>
+                <button onclick="logout()" class="btn" style="margin-left: 12px; background: rgba(255,255,255,.03);">Logout</button>
+              </div>
+            </div>
+          `;
+        }
+      }
+    });
+
+    function logout() {
+      sessionStorage.removeItem('currentUser');
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>
