@@ -1,0 +1,190 @@
+{
+  "categories": {
+    "creative": {
+      "name": "Creative & Design",
+      "subcategories": [
+        "Graphic Design",
+        "Branding & Logo Design",
+        "Illustration & Visual Art"
+      ],
+      "students": {
+        "Graphic Design": {
+          "name": "Maria Petrova",
+          "age": 16,
+          "skills": "Graphic Design, Layout, Visual Balance",
+          "portfolio": "Instagram posts, posters, banners",
+          "focus": "Clean, modern visuals for digital use"
+        },
+        "Branding & Logo Design": {
+          "name": "Stefan Nikolov",
+          "age": 18,
+          "skills": "Logo Design, Brand Identity, Color Theory",
+          "portfolio": "Logo concepts, brand boards",
+          "focus": "Creating visual identity for new brands"
+        },
+        "Illustration & Visual Art": {
+          "name": "Yoana Ivanova",
+          "age": 17,
+          "skills": "Illustration, Digital Drawing",
+          "portfolio": "Digital illustrations, character sketches",
+          "focus": "Creative visuals and custom artwork"
+        }
+      }
+    },
+    "social": {
+      "name": "Social Media & Content",
+      "subcategories": [
+        "Social Media Posts",
+        "Short-Form Video (Reels / TikTok)",
+        "Content Writing & Captions"
+      ],
+      "students": {
+        "Social Media Posts": {
+          "name": "Ivan Dimitrov",
+          "age": 17,
+          "skills": "Post Design, Captions, Visual Storytelling",
+          "portfolio": "Instagram post mockups",
+          "focus": "Engaging, youth-oriented content"
+        },
+        "Short-Form Video (Reels / TikTok)": {
+          "name": "Kalina Petrova",
+          "age": 16,
+          "skills": "Video Editing, Trends, Timing",
+          "portfolio": "TikTok edits, Instagram reels",
+          "focus": "Fast, trendy short videos"
+        },
+        "Content Writing & Captions": {
+          "name": "Georgi Marinov",
+          "age": 18,
+          "skills": "Copywriting, Storytelling",
+          "portfolio": "Captions, short blog texts",
+          "focus": "Clear, catchy messaging"
+        }
+      }
+    },
+    "video": {
+      "name": "Video & Photography",
+      "subcategories": [
+        "Video Editing",
+        "Basic Filming & Shooting",
+        "Photo Editing"
+      ],
+      "students": {
+        "Video Editing": {
+          "name": "Elena Georgieva",
+          "age": 18,
+          "skills": "Video Editing, Transitions, Sound",
+          "portfolio": "Edited short videos",
+          "focus": "Polished edits for social media"
+        },
+        "Basic Filming & Shooting": {
+          "name": "Petar Angelov",
+          "age": 17,
+          "skills": "Filming, Framing, Lighting",
+          "portfolio": "Raw footage, school events",
+          "focus": "Capturing video content"
+        },
+        "Photo Editing": {
+          "name": "Daniela Kostova",
+          "age": 16,
+          "skills": "Photo Editing, Color Correction",
+          "portfolio": "Edited portraits, product photos",
+          "focus": "Clean and natural photo edits"
+        }
+      }
+    },
+    "tech": {
+      "name": "Tech & Digital",
+      "subcategories": [
+        "Web Design (UI/UX basics)",
+        "Basic Web Development",
+        "No-Code Tools (Webflow, Wix, etc.)"
+      ],
+      "students": {
+        "Web Design (UI/UX basics)": {
+          "name": "Daniel Stoyanov",
+          "age": 17,
+          "skills": "UI Design, Layout, UX Basics",
+          "portfolio": "Website mockups (Figma)",
+          "focus": "User-friendly web design"
+        },
+        "Basic Web Development": {
+          "name": "Martin Hristov",
+          "age": 18,
+          "skills": "HTML, CSS, Basic JavaScript",
+          "portfolio": "Simple websites",
+          "focus": "Turning designs into working pages"
+        },
+        "No-Code Tools (Webflow, Wix, etc.)": {
+          "name": "Simona Vasileva",
+          "age": 16,
+          "skills": "No-Code Development",
+          "portfolio": "Webflow / Wix sites",
+          "focus": "Fast website creation without coding"
+        }
+      }
+    },
+    "marketing": {
+      "name": "Marketing & Business",
+      "subcategories": [
+        "Digital Marketing",
+        "Market Research",
+        "Presentation & Pitch Decks"
+      ],
+      "students": {
+        "Digital Marketing": {
+          "name": "Nikolay Todorov",
+          "age": 18,
+          "skills": "Campaign Ideas, Analytics Basics",
+          "portfolio": "Marketing plans",
+          "focus": "Promoting brands online"
+        },
+        "Market Research": {
+          "name": "Hristo Velikov",
+          "age": 17,
+          "skills": "Research, Surveys, Data Summary",
+          "portfolio": "Research reports",
+          "focus": "Understanding customers & markets"
+        },
+        "Presentation & Pitch Decks": {
+          "name": "Alexandra Dimitrova",
+          "age": 16,
+          "skills": "Presentations, Visual Storytelling",
+          "portfolio": "Pitch decks, slide designs",
+          "focus": "Clear and persuasive presentations"
+        }
+      }
+    },
+    "community": {
+      "name": "Community & Impact",
+      "subcategories": [
+        "Social Projects & NGOs",
+        "Event Support & Organization",
+        "Sustainability & Awareness Campaigns"
+      ],
+      "students": {
+        "Social Projects & NGOs": {
+          "name": "Raya Koleva",
+          "age": 16,
+          "skills": "Community Work, Communication",
+          "portfolio": "NGO project summaries",
+          "focus": "Social impact initiatives"
+        },
+        "Event Support & Organization": {
+          "name": "Borislav Petrov",
+          "age": 18,
+          "skills": "Planning, Coordination",
+          "portfolio": "Event schedules",
+          "focus": "Supporting and organizing events"
+        },
+        "Sustainability & Awareness Campaigns": {
+          "name": "Mila Hristova",
+          "age": 17,
+          "skills": "Campaign Planning, Content Creation",
+          "portfolio": "Awareness posters, plans",
+          "focus": "Environmental & social awareness"
+        }
+      }
+    }
+  }
+}

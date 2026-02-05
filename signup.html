@@ -41,9 +41,10 @@
           </div>
           <h1>Create Your Account</h1>
           <span class="heading-line"></span>
-          <p>Join TeenzUP and start selling your skills to businesses.</p>
+          <p>Join TeenzUP and start sharing your skills with businesses.</p>
 
           <div class="form-container animate-on-scroll delay-2">
+            <div class="form-alert" id="signupAlert" role="status" aria-live="polite"></div>
             <form id="signupForm" onsubmit="handleSignup(event)">
               <div class="form-group">
                 <label for="firstName">First Name *</label>
@@ -81,7 +82,7 @@
               </div>
 
               <div class="form-group">
-                <label for="selling">What are you selling? *</label>
+                <label for="selling">What are your skills? *</label>
                 <select id="selling" name="selling" required>
                   <option value="">Select a category</option>
                   <option value="Graphic Design">Graphic Design</option>
@@ -107,7 +108,7 @@
 
               <div class="form-group">
                 <label for="age">Age *</label>
-                <input type="number" id="age" name="age" required min="16" max="19">
+                <input type="number" id="age" name="age" required min="25" placeholder="25+">
               </div>
 
               <div class="form-actions">
@@ -125,10 +126,20 @@
     </div>
   </main>
 
+  <script src="site.js"></script>
   <script src="accounts.js"></script>
   <script>
     function handleSignup(event) {
       event.preventDefault();
+
+      const alertBox = document.getElementById('signupAlert');
+      const showAlert = (message, type = 'error') => {
+        alertBox.textContent = message;
+        alertBox.classList.toggle('success', type === 'success');
+        alertBox.classList.add('show');
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      };
+      alertBox.classList.remove('show', 'success');
       
       const formData = {
         firstName: document.getElementById('firstName').value.trim(),
@@ -143,20 +154,20 @@
       };
 
       // Validate age
-      if (formData.age < 16 || formData.age > 19) {
-        alert('You must be between 16 and 19 years old to join TeenzUP.');
+      if (Number.isNaN(formData.age) || formData.age < 25) {
+        showAlert('You must be at least 25 years old to join TeenzUP.');
         return;
       }
 
       // Check if nickname already exists
       if (accountManager.accountExists(formData.nickname)) {
-        alert('This nickname is already taken. Please choose another one.');
+        showAlert('This nickname is already taken. Please choose another one.');
         return;
       }
 
       // Check if email already exists
       if (accountManager.emailExists(formData.email)) {
-        alert('An account with this email already exists. Please login instead.');
+        showAlert('An account with this email already exists. Please login instead.');
         return;
       }
 
@@ -164,10 +175,10 @@
       const success = accountManager.createAccount(formData);
       
       if (success) {
-        alert('Account created successfully! You can now login.');
+        showAlert('Account created successfully! You can now login.', 'success');
         window.location.href = 'login.html';
       } else {
-        alert('Failed to create account. Please try again.');
+        showAlert('Failed to create account. Please try again.');
       }
     }
   </script>
