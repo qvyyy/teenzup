@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeenzUp | By Students, For Students</title>
+    <meta name="description" content="Digital micro-internships for high school students. Built by students, for students.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Bulgarian GDPR Entrance Guard (Splash) -->
+    <div id="gdprGuard" class="gdpr-overlay">
+        <div class="gdpr-card">
+            <h1 style="font-size: 42px; margin-bottom: 24px; color: var(--primary);">Protocol Entrance</h1>
+            <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 16px; line-height: 1.6;">
+                TeenzUp requires full compliance with the <b>Bulgarian Personal Data Protection Act</b> and <b>EU GDPR</b>. To enter the network, you must verify your acceptance of our data processing protocols.
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 32px; text-align: left;">
+                <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                    <input type="checkbox" id="g1" style="transform: scale(1.2); margin-top: 4px;">
+                    <label for="g1" style="font-size: 13px; color: #FFF; font-weight: 700;">I consent to the collection of my email and personal registration data.</label>
+                </div>
+                <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                    <input type="checkbox" id="g2" style="transform: scale(1.2); margin-top: 4px;">
+                    <label for="g2" style="font-size: 13px; color: #FFF; font-weight: 700;">I accept the TeenzUp Quality Protocol and Terms of Service.</label>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <input type="checkbox" id="g3" style="transform: scale(1.2); margin-top: 4px;">
+                    <label for="g3" style="font-size: 13px; color: #FFF; font-weight: 700;">I verify that I am a student within the required age parameters.</label>
+                </div>
+            </div>
+            
+            <button class="buy-btn" onclick="enterNetwork()" style="padding: 20px 48px; width: auto; min-width: 300px;">I ACCEPT & ENTER THE NETWORK</button>
+        </div>
+    </div>
+
+    <!-- Visual Ambient Engine (Nebula-Sovereign) -->
+    <div id="ambient-container"></div>
+    <div id="starfield"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" onclick="showView('home')" class="brand">TeenzUp</a>
+            <div class="nav-links">
+                <a href="javascript:void(0)" onclick="showView('home')" class="nav-item active">Home</a>
+                <a href="javascript:void(0)" onclick="showView('market')" class="nav-item">Marketplace</a>
+                <a href="javascript:void(0)" onclick="showView('contact')" class="nav-item">Support</a>
+            </div>
+            <div id="authZone">
+                <button onclick="showView('auth')" class="nav-item" style="color: #FFF; font-weight: 850;">Log In</button>
+            </div>
+            <!-- Mobile Toggle -->
+            <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div style="padding: 100px 40px; display:flex; flex-direction:column; gap:24px;">
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); showView('home')" class="m-link">Home Protocol</a>
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); showView('market')" class="m-link">Marketplace</a>
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); showView('contact')" class="m-link">Support Hub</a>
+            <div style="height:1px; background:var(--border); margin:20px 0;"></div>
+            <div id="mAuthZone"></div>
+        </div>
+    </div>
+
+    <!-- Main Container Shell -->
+    <main class="container main-wrap">
+
+        <!-- HOME VIEW -->
+        <section id="homeView" class="view active">
+            <div class="hero-section">
+                <div class="hero-card" id="heroCard">
+                    <div class="hero-glow"></div>
+                    <div class="parallax-layer" data-depth="0.1">
+                        <div class="hero-label">The Digital Renaissance</div>
+                    </div>
+                    <div class="parallax-layer" data-depth="0.2">
+                        <h1 class="hero-title">By Students,<br>For Students.</h1>
+                    </div>
+                    <div class="parallax-layer" data-depth="0.15">
+                        <p class="hero-sub">
+                            Bulgaria's premiere discovery hub for high-end talent. Build your portfolio, earn real value, and master your own future.
+                        </p>
+                    </div>
+                    
+                    <div class="parallax-layer" data-depth="0.1">
+                        <div class="hero-stats">
+                            1,240 Projects | € 78K Volume | 486 Experts
+                        </div>
+                    </div>
+
+                    <div class="parallax-layer" data-depth="0.25">
+                        <button class="join-cta" onclick="window.showView('auth'); window.toggleAuth(false);">Join the Expert Network</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Home: Value Props -->
+            <h2 class="section-title">The Sovereign Framework</h2>
+            <div class="feature-grid">
+                <div class="f-card">
+                    <div class="f-icon">01</div>
+                    <h3>Proof of Skill</h3>
+                    <p style="color:var(--text-muted); margin-top:16px;">We replace generic resumes with a verified portfolio of real-world business micro-internships.</p>
+                </div>
+                <div class="f-card">
+                    <div class="f-icon">02</div>
+                    <h3>Fast Liquidity</h3>
+                    <p style="color:var(--text-muted); margin-top:16px;">Get paid in € directly upon project completion. No predatory wait times, no hidden fees.</p>
+                </div>
+                <div class="f-card">
+                    <div class="f-icon">03</div>
+                    <h3>Global Quality</h3>
+                    <p style="color:var(--text-muted); margin-top:16px;">Every expert is vetted through our 5-step competence protocol before listing their first offer.</p>
+                </div>
+            </div>
+
+            <div class="leader-wrap">
+                <div class="board-box">
+                    <h3 style="margin-bottom: 24px;">Top Sellers</h3>
+                    <div id="sellerBoard"></div>
+                </div>
+                <div class="board-box">
+                    <h3 style="margin-bottom: 24px;">Top Buyers</h3>
+                    <div id="buyerBoard"></div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Why Businesses Choose Us</h2>
+            <div style="background:var(--bg-surface); padding:60px; border-radius:24px; border:1px solid var(--border); margin-bottom:100px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center;">
+                    <div>
+                        <h1 style="font-size:42px; margin-bottom:24px;">Fresh Perspectives,<br>Professional Execution.</h1>
+                        <p style="color:var(--text-muted); font-size:18px; line-height:1.7;">Access the brightest high school minds in Bulgaria. Our experts bring modern tech stacks and Gen-Z insights to your projects, overseen by the TeenzUp Quality Protocol.</p>
+                    </div>
+                    <div class="step-wrap" style="margin:0;">
+                        <div class="step-card"><div class="step-num">80%</div><p>Lower overhead compared to traditional agencies.</p></div>
+                        <div class="step-card"><div class="step-num">48h</div><p>Average response time for new project inquiries.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARKET VIEW -->
+        <section id="marketView" class="view">
+            <div style="margin-bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <h1 style="font-size: 48px; margin-bottom: 12px;">Marketplace</h1>
+                    <p style="color: var(--text-muted);">Discover digital services handled by verified high school experts.</p>
+                </div>
+                <!-- Create Sale Button (Visible for All, logic handles status) -->
+                <button id="createSaleBtn" class="pill active" style="background: #A855F7;" onclick="handleCreateSaleClick()">+ Create a Sale</button>
+            </div>
+
+            <!-- Enhanced Marketplace Controls -->
+            <div class="market-controls">
+                <div class="search-box">
+                    <span class="search-icon" style="opacity:0.3; position:absolute; left:16px; top:16px;">🔍</span>
+                    <input type="text" id="marketSearch" class="search-input" placeholder="Search for anything digital..." oninput="handleSearch()">
+                </div>
+                
+                <select id="marketSort" class="sort-box" onchange="handleSort()">
+                    <option value="none">None (Default)</option>
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="popular">Best Selling</option>
+                    <option value="unpopular">Fewest Sales</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="latency">Fastest Delivery</option>
+                </select>
+                
+            </div>
+            
+            <div class="filter-pills" id="categoryFilters" style="margin-bottom: 40px; overflow-x: auto; padding-bottom: 10px; white-space: nowrap;">
+                <button class="pill active" onclick="setCategory('ALL')">ALL</button>
+                <button class="pill" onclick="setCategory('CODING')">CODING</button>
+                <button class="pill" onclick="setCategory('DESIGN')">GRAPHIC DESIGN</button>
+                <button class="pill" onclick="setCategory('VIDEO')">VIDEO EDITING</button>
+                <button class="pill" onclick="setCategory('UI/UX')">UI/UX</button>
+                <button class="pill" onclick="setCategory('WRITING')">WRITING</button>
+                <button class="pill" onclick="setCategory('AUDIO')">AUDIO/VO</button>
+                <button class="pill" onclick="setCategory('MOTION')">MOTION GRAPHICS</button>
+                <button class="pill" onclick="setCategory('SOCIAL')">SOCIAL MEDIA</button>
+                <button class="pill" onclick="setCategory('TRANSLATION')">TRANSLATION</button>
+                <button class="pill" onclick="setCategory('3D')">3D MODELING</button>
+                <button class="pill" onclick="setCategory('NFT')">NFT ART</button>
+                <button class="pill" onclick="setCategory('COACHING')">TUTORING</button>
+            </div>
+
+            <div class="bento-grid" id="marketGrid"></div>
+        </section>
+
+        <!-- ABOUT VIEW -->
+        <section id="aboutView" class="view">
+            <div style="text-align:center; max-width:900px; margin:0 auto;">
+                <h1 style="font-size: 80px; margin-bottom: 40px; line-height:0.9;">The Bridge to<br><span style="color:var(--primary);">Professionalism.</span></h1>
+                <p style="color:var(--text-muted); font-size:24px; line-height:1.6;">TeenzUp is Bulgaria's first career-accelerator designed specifically for high schoolers.</p>
+            </div>
+
+            <h2 class="section-title">Our Philosophy</h2>
+            <div class="feature-grid">
+                <div class="f-card">
+                    <h3>Autonomy</h3>
+                    <p style="color:var(--text-muted); margin-top:16px;">We believe teenagers should have the right to build their own economic future while finishing their education.</p>
+                </div>
+                <div class="f-card">
+                    <h3>Integrity</h3>
+                    <p style="color:var(--text-muted); margin-top:16px;">No shortcuts. Every project on TeenzUp is a real contract with real stakes and real professional results.</p>
+                </div>
+            </div>
+
+            <div style="margin-top:100px;">
+                <h2 class="section-title">Safety & Protocols</h2>
+                <div class="step-wrap">
+                    <div class="step-card">
+                        <div class="step-num">01</div>
+                        <div>
+                            <h3>Identity Verification</h3>
+                            <p style="color:var(--text-muted); margin-top:8px;">All experts must prove high school enrollment and be 16+ to participate in the marketplace.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">02</div>
+                        <div>
+                            <h3>Escrow Security</h3>
+                            <p style="color:var(--text-muted); margin-top:8px;">Funds are held securely by TeenzUp until the project deliverables are verified by the buyer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centered Large CTAs -->
+            <div class="footer-cta-block">
+                <h2 style="font-size:14px; color:var(--primary); letter-spacing:4px; text-transform:uppercase;">Protocol Access</h2>
+                <button class="contact-hero-btn" onclick="showView('contact')">Get In Touch</button>
+                <div style="display:flex; gap:60px;">
+                    <div class="big-legal-link" onclick="showView('tos')">TOS</div>
+                    <div class="big-legal-link" onclick="window.open('https://discord.gg/teenzup','_blank')">Discord</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTH VIEW -->
+        <section id="authView" class="view">
+            <div class="auth-view">
+                <div id="loginForm">
+                    <center><h1 style="margin-bottom: 32px;">Identity Access</h1></center>
+                    <div class="input-group"><label class="label">Expert ID / Email Address</label><input type="text" id="lUser" class="input"></div>
+                    <div class="input-group"><label class="label">Password</label><input type="password" id="lPass" class="input"></div>
+                    <button onclick="login()" class="auth-btn">Authorize Entry</button>
+                    <p style="text-align: center; margin-top: 24px; font-size: 11px; cursor: pointer; color: var(--primary); font-weight: 800;" onclick="toggleAuth(false)">Create New Expert ID</p>
+                </div>
+                <div id="signupForm" style="display: none;">
+                    <center><h1 style="margin-bottom: 32px;">Expert Registration</h1></center>
+                    <div class="input-group"><label class="label">Expert Name</label><input type="text" id="sF" class="input" placeholder="Full Identity Name"></div>
+                    <div class="input-group"><label class="label">Expert ID</label><input type="text" id="sU" class="input" placeholder="Expert Protocol ID"></div>
+                    <div class="input-group"><label class="label">Email Address</label><input type="email" id="sE" class="input" placeholder="Verified Email"></div>
+                    <div class="input-group"><label class="label">Phone Protocol (+...)</label><input type="tel" id="sPhone" class="input" placeholder="+359 ..."></div>
+                    <div class="input-group"><label class="label">Birthday Protocol</label><input type="date" id="sB" class="input"></div>
+                    <div class="input-group"><label class="label">Password</label><input type="password" id="sP1" class="input"></div>
+                    <div class="input-group"><label class="label">Repeat Password</label><input type="password" id="sP2" class="input"></div>
+                    <button onclick="signup()" class="auth-btn">Initialize Identity</button>
+                    <p style="text-align: center; margin-top: 24px; font-size: 11px; cursor: pointer; color: var(--text-muted);" onclick="toggleAuth(true)">Return to Login</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE VIEW -->
+        <section id="profileView" class="view">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h1 style="margin-bottom: 40px;">Expert Control</h1>
+                <div class="input-group"><label class="label">Avatar (File)</label><input type="file" id="pPic" class="input" accept="image/*" style="padding-top:10px;"></div>
+                <div class="input-group"><label class="label">Banner (File)</label><input type="file" id="pBanner" class="input" accept="image/*" style="padding-top:10px;"></div>
+                <div class="input-group"><label class="label">Portfolio Link (Global URL)</label><input type="text" id="pPortfolio" class="input"></div>
+                <div style="display:flex; gap:16px;">
+                    <div class="input-group" style="flex:1;"><label class="label">Email Address</label><input type="email" id="pEmail" class="input"></div>
+                    <div class="input-group" style="flex:1;"><label class="label">Phone Protocol</label><input type="tel" id="pPhone" class="input"></div>
+                </div>
+                <div class="input-group"><label class="label">Bio</label><textarea id="pBio" class="input" style="height: 120px;"></textarea></div>
+                <div class="input-group"><label class="label">New Password</label><input type="password" id="pPass" class="input"></div>
+                <button onclick="saveProfile()" class="auth-btn">Update Profile</button>
+                <div class="exit-wrap" style="text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border);">
+                    <a href="mailto:support@teenzup.com" style="color: var(--primary); font-weight: 800; font-size: 14px;">DEPLOY EMAIL PROTOCOL</a>
+                    <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+                        <div class="label" style="margin-bottom:8px;">VOICE SUPPORT</div>
+                        <div style="display:flex; gap:12px;">
+                            <a href="tel:+359888888888" class="buy-btn" style="padding:10px 16px; font-size:12px;">CALL PROTOCOL</a>
+                            <a href="https://wa.me/359888888888" class="buy-btn" style="padding:10px 16px; font-size:12px; background:#25D366;">WHATSAPP</a>
+                        </div>
+                    </div>
+                    <button onclick="logout()" style="color:#FF4477; font-weight:800; font-size:12px; margin-top:30px;">EXIT IDENTITY</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- LEGAL VIEWS -->
+        <section id="tosView" class="view"><h1>Terms of Service</h1><p style="margin-top:24px; color:var(--text-muted); line-height:1.8;">Bulgarian Personal Data Protection Act compliance...</p></section>
+        <section id="contactView" class="view"><h1>Contact protocol</h1><p style="margin-top:24px; color:var(--primary); font-weight:800; font-size:24px;">teenzup@gmail.com</p></section>
+
+    </main>
+
+    <!-- OFFER MODAL -->
+    <div id="offerModal" class="modal-overlay">
+        <div class="modal-card" id="mContent"></div>
+    </div>
+
+    <footer>
+        <div class="container">&copy; 2026 TeenzUp Network. Built by zali.</div>
+    </footer>
+
+    <!-- Modular Modules -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script src="market.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Terminal | Admin Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Syne:wght@800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4B1AFF;
+            --secondary: #8E54FF;
+            --bg: #06040A;
+            --surface: #0E0B16;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+        body { background: var(--bg); color: #FFF; font-family: 'Inter', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+        
+        .gate { text-align: center; max-width: 400px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; z-index: 100; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+        .input { width: 100%; background: #000; border: 1px solid var(--border); padding: 16px; border-radius: 12px; color: #FFF; font-size: 16px; margin-bottom: 24px; text-align: center; outline: none; }
+        .btn { background: var(--primary); color: #FFF; border: none; padding: 16px 32px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn:hover { background: var(--secondary); }
+
+        /* Dashboard View */
+        #dashboard { display: none; width: 100%; height: 100vh; padding: 40px; box-sizing: border-box; overflow-y: auto; background: var(--bg); }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .stat-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 20px; position: relative; overflow: hidden; }
+        .stat-label { font-size: 11px; font-weight: 800; color: #8E8EB2; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; }
+        .stat-value { font-size: 40px; font-family: 'Syne'; font-weight: 800; color: var(--primary); }
+        .stat-chart { height: 4px; background: rgba(255,255,255,0.05); margin-top: 16px; border-radius: 2px; }
+        .stat-fill { height: 100%; background: var(--secondary); width: 60%; }
+
+        .leader-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .board { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 20px; }
+        .row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); align-items: center; }
+        .whale-tag { color: var(--secondary); font-weight: 800; font-size: 10px; background: rgba(142, 84, 255, 0.1); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(142,84,255,0.2); }
+        
+        .delete-btn { color: #FF4477; font-weight: 800; font-size: 11px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
+        .delete-btn:hover { opacity: 1; }
+
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <!-- Access Gate -->
+    <div id="accessGate" class="gate">
+        <h1 style="font-family: 'Syne'; font-size: 32px; margin-bottom: 12px;">Sovereign Entry</h1>
+        <p style="color: #8E8EB2; margin-bottom: 32px; font-size: 14px;">Protocol Verification Required.</p>
+        <input type="password" id="gatePass" class="input" placeholder="ACCESS KEY">
+        <button onclick="unlock()" class="btn">Authenticate</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <div class="dash-header">
+            <div>
+                <h1 style="font-family: 'Syne'; font-size: 48px; margin:0;">Sovereign Terminal</h1>
+                <p class="mono" style="color: #8E8EB2; margin-top: 8px;">Encryption: AES-256 | Node: Alpha-1</p>
+            </div>
+            <button onclick="location.reload()" class="btn" style="width: auto; background: rgba(255,255,255,0.05); color: #8E8EB2;">DISCONNECT</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Volume (Gross)</div>
+                <div class="stat-value">BGN 78,420</div>
+                <div class="stat-chart"><div class="stat-fill" style="width: 82%;"></div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Verified Experts</div>
+                <div class="stat-value">486</div>
+                <div class="stat-chart"><div class="stat-fill" style="width: 70%;"></div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Gigs</div>
+                <div class="stat-value">1,240</div>
+                <div class="stat-chart"><div class="stat-fill" style="width: 90%;"></div></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Daily Hits</div>
+                <div class="stat-value">3,842</div>
+                <div class="stat-chart"><div class="stat-fill" style="width: 55%;"></div></div>
+            </div>
+        </div>
+
+        <div class="leader-grid">
+            <div class="board">
+                <h2 style="font-family: 'Syne'; margin-bottom: 32px; font-size: 24px;">Market Moderation</h2>
+                <div id="offersList"></div>
+            </div>
+            <div class="board">
+                <h2 style="font-family: 'Syne'; margin-bottom: 32px; font-size: 24px;">Whale Insight</h2>
+                <div id="whalesList"></div>
+            </div>
+        </div>
+
+        <div class="board" style="margin-top: 40px;">
+            <h2 style="font-family: 'Syne'; margin-bottom: 32px; font-size: 24px;">Seller Applications</h2>
+            <div id="appsList"></div>
+        </div>
+    </div>
+
+    <script>
+        function unlock() {
+            if(document.getElementById('gatePass').value === 'nigger') {
+                document.getElementById('accessGate').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                renderDashboard();
+            } else {
+                alert("ACCESS DENIED: KEY INVALID.");
+            }
+        }
+
+        function renderDashboard() {
+            const offers = [
+                {id: 0, title: "Elite Coding Bundle", seller: "AlexNode"},
+                {id: 1, title: "3D Asset Masterclass", seller: "PixelGhost"},
+                {id: 2, title: "Full-Stack Project", seller: "CodeCore"},
+                {id: 3, title: "Video Editorial", seller: "VlogGen"},
+                {id: 4, title: "Vector Design Pack", seller: "Arty"}
+            ];
+
+            const whales = [
+                {n: "Startup_X", v: "BGN 12,400"},
+                {n: "SkyNet_HQ", v: "BGN 9,200"},
+                {n: "WebFlow_Labs", v: "BGN 7,800"},
+                {n: "CreativeHub", v: "BGN 5,400"}
+            ];
+
+            document.getElementById('offersList').innerHTML = offers.map(o => `
+                <div class="row">
+                    <div>
+                        <div style="font-weight:700;">${o.title}</div>
+                        <div class="mono" style="font-size:11px; color:#8E8EB2; margin-top:4px;">Seller: ${o.seller}</div>
+                    </div>
+                    <div class="delete-btn" onclick="this.parentElement.remove(); alert('Record Erased')">DELETE</div>
+                </div>
+            `).join('');
+
+            document.getElementById('whalesList').innerHTML = whales.map(w => `
+                <div class="row">
+                    <div>
+                        <div style="font-weight:700;">${w.n}</div>
+                        <div class="whale-tag">TOP BUYER</div>
+                    </div>
+                    <div class="mono" style="font-weight:800;">${w.v}</div>
+                </div>
+            `).join('');
+
+            renderApplications();
+        }
+
+        function renderApplications() {
+            const apps = JSON.parse(localStorage.getItem('teenzup_seller_apps')) || [];
+            const list = document.getElementById('appsList');
+            if(!list) return;
+
+            if(apps.length === 0) {
+                list.innerHTML = '<p class="mono" style="opacity:0.5;">No pending applications.</p>';
+                return;
+            }
+
+            list.innerHTML = apps.map((a, i) => `
+                <div class="row" style="flex-direction:column; align-items:flex-start; gap:12px; padding:24px 0;">
+                    <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                        <div>
+                            <span style="font-weight:800; color:var(--primary); font-size:18px;">${a.userId}</span>
+                            <span class="mono" style="font-size:11px; margin-left:12px;">Payout: ${a.payout}</span>
+                        </div>
+                        <div style="display:flex; gap:12px;">
+                            <button class="btn" style="width:auto; padding:8px 20px; font-size:12px;" onclick="approveApp(${i})">APPROVE</button>
+                            <button class="btn" style="width:auto; padding:8px 20px; font-size:12px; background:#FF4477;" onclick="rejectApp(${i})">REJECT</button>
+                        </div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:12px; width:100%;">
+                        <div class="stat-label" style="margin-bottom:8px;">Application Content</div>
+                        <p style="font-size:14px; margin-bottom:8px;"><b>Why:</b> ${a.why}</p>
+                        <p style="font-size:14px; margin-bottom:8px;"><b>What:</b> ${a.what}</p>
+                        <a href="${a.portfolio}" target="_blank" class="mono" style="color:var(--secondary); text-decoration:underline;">PORTFOLIO LINK</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function approveApp(index) {
+            let apps = JSON.parse(localStorage.getItem('teenzup_seller_apps')) || [];
+            const app = apps[index];
+            
+            // In a real app, we'd update the user record. 
+            // Since we're using localStorage, we'll store a "role_override" flag for this username.
+            const userState = JSON.parse(localStorage.getItem('inf_u_v2'));
+            if(userState && userState.username === app.userId) {
+                userState.role = 'seller';
+                localStorage.setItem('inf_u_v2', JSON.stringify(userState));
+            }
+
+            // Flag this user as a seller globally
+            let sellers = JSON.parse(localStorage.getItem('teenzup_verified_sellers')) || [];
+            sellers.push(app.userId);
+            localStorage.setItem('teenzup_verified_sellers', JSON.stringify(sellers));
+
+            apps.splice(index, 1);
+            localStorage.setItem('teenzup_seller_apps', JSON.stringify(apps));
+            renderApplications();
+            alert(`USER ${app.userId} PROMOTED TO SELLER STATUS.`);
+        }
+
+        function rejectApp(index) {
+            let apps = JSON.parse(localStorage.getItem('teenzup_seller_apps')) || [];
+            apps.splice(index, 1);
+            localStorage.setItem('teenzup_seller_apps', JSON.stringify(apps));
+            renderApplications();
+            alert("APPLICATION REJECTED & PURGED.");
+        }
+    </script>
+</body>
+</html>
